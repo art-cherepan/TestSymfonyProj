@@ -3,6 +3,11 @@
 {% block title %} {% endblock %}
 
 {% block body %}
+    <form class="form-inline my-2 my-lg-0" action="{{ path('blog_search') }}" method="get">
+        <input class="form-control mr-sm-2" type="search" aria-label="Search" name="q">
+        <button class="btn btn-default my-2 my-sm-0" type="submit">Ищем</button>
+    </form>
+
     {% for post in posts %}
         <a href="{{ path('blog_show', {'slug': post.slug}) }}">{{ post.title }}</a><br><br>
     {% endfor %}
