@@ -24,6 +24,12 @@ class RegisterController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    #[Route('/login', name: 'login')]
+    public function login(): Response
+    {
+        return new Response('login success!');
+    }
+
     /**
      * @throws TransportExceptionInterface
      */
@@ -43,6 +49,9 @@ class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var User $user
+             */
             $user = $form->getData();
 
             $password = $passwordHasher->hashPassword(
@@ -66,7 +75,9 @@ class RegisterController extends AbstractController
     #[Route('/confirm/{code}', name: 'email_confirmation')]
     public function confirmEmail(UserRepository $userRepository, string $code)
     {
-        /** @var User $user */
+        /**
+         * @var User $user
+         */
         $user = $userRepository->findOneBy(['confirmationCode' => $code]);
 
         if ($user === null) {
