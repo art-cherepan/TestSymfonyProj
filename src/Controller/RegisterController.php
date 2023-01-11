@@ -26,12 +26,6 @@ class RegisterController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/login', name: 'login')]
-    public function login(): Response
-    {
-        return new Response('login success!');
-    }
-
     /**
      * @throws TransportExceptionInterface
      */
@@ -96,5 +90,4 @@ class RegisterController extends AbstractController
             'user' => $user,
         ]);
     }
-
 }
