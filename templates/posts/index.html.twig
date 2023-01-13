@@ -7,6 +7,7 @@
         Привет, {{app.user.email}}  | <a href={{ path('logout') }}>Выйти</a>
     {% else %}
         <a href={{ path('login') }}>Войти</a> | <a href={{ path('register') }}>Зарегестрироваться</a>
+        <a href="{{ path('connect_google_start') }}">Войти через Google</a><br>
     {% endif %}
 
     <form class="form-inline my-2 my-lg-0" action="{{ path('blog_search') }}" method="get">

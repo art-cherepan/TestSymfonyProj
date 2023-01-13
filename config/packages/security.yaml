@@ -2,14 +2,6 @@ security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-        # auto hasher with default options for the User class (and children)
-        #App\Entity\User: 'auto'
-
-        # auto hasher with custom options for all PasswordAuthenticatedUserInterface instances
-        #Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-        #    algorithm: 'auto'
-        #    cost: 15
-        # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
 
     providers:
         users_in_memory: { memory: null }
@@ -30,6 +22,11 @@ security:
                 check_path: login
             logout:
                 path: logout
+            custom_authenticators:
+                    - App\Security\OAuthGoogleAuthenticator
+            guard:
+                authenticators:
+                    - App\Security\OAuthGoogleAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
